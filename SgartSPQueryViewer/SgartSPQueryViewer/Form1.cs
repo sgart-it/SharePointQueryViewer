@@ -30,7 +30,7 @@ namespace SgartSPQueryViewer
       txtCSharp.Text = "";
       txtCaml.Text = "";
       txtViewData.Text = "";
-      txtCSharp.Enabled = false;
+      txtCaml.Enabled = false;
       txtCSharp.Enabled = false;
       txtViewData.Enabled = false;
       //tabControl1.Enabled = false;
@@ -48,6 +48,8 @@ namespace SgartSPQueryViewer
       this.Text  = Application.ProductName + " - v. " + Application.ProductVersion;
 
       btnRandomGuid_Click(null, null);
+
+      txtUrl.Focus();
     }
 
 

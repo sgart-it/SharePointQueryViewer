@@ -93,7 +93,7 @@
       this.label1.Location = new System.Drawing.Point(4, 9);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(47, 13);
-      this.label1.TabIndex = 0;
+      this.label1.TabIndex = 200;
       this.label1.Text = "Web url:";
       // 
       // txtUrl
@@ -103,7 +103,7 @@
       this.txtUrl.Location = new System.Drawing.Point(57, 6);
       this.txtUrl.Name = "txtUrl";
       this.txtUrl.Size = new System.Drawing.Size(418, 20);
-      this.txtUrl.TabIndex = 1;
+      this.txtUrl.TabIndex = 0;
       this.txtUrl.Text = "http://";
       this.toolTip1.SetToolTip(this.txtUrl, "insert the web site url");
       this.txtUrl.TextChanged += new System.EventHandler(this.txtUrl_TextChanged);
@@ -114,7 +114,7 @@
       this.btnConnect.Location = new System.Drawing.Point(507, 2);
       this.btnConnect.Name = "btnConnect";
       this.btnConnect.Size = new System.Drawing.Size(96, 26);
-      this.btnConnect.TabIndex = 2;
+      this.btnConnect.TabIndex = 4;
       this.btnConnect.Text = "Connect";
       this.btnConnect.UseVisualStyleBackColor = true;
       this.btnConnect.Click += new System.EventHandler(this.button1_Click);
@@ -134,7 +134,7 @@
       this.tabControl1.Name = "tabControl1";
       this.tabControl1.SelectedIndex = 0;
       this.tabControl1.Size = new System.Drawing.Size(607, 276);
-      this.tabControl1.TabIndex = 3;
+      this.tabControl1.TabIndex = 20;
       // 
       // tpCaml
       // 
@@ -156,7 +156,7 @@
       this.lblViewName.Location = new System.Drawing.Point(3, 3);
       this.lblViewName.Name = "lblViewName";
       this.lblViewName.Size = new System.Drawing.Size(593, 13);
-      this.lblViewName.TabIndex = 1;
+      this.lblViewName.TabIndex = 22;
       this.lblViewName.Text = "-";
       // 
       // txtCaml
@@ -170,7 +170,7 @@
       this.txtCaml.Name = "txtCaml";
       this.txtCaml.ScrollBars = System.Windows.Forms.ScrollBars.Both;
       this.txtCaml.Size = new System.Drawing.Size(596, 228);
-      this.txtCaml.TabIndex = 0;
+      this.txtCaml.TabIndex = 22;
       // 
       // tpCSharp
       // 
@@ -193,7 +193,7 @@
       this.txtCSharp.Name = "txtCSharp";
       this.txtCSharp.ScrollBars = System.Windows.Forms.ScrollBars.Both;
       this.txtCSharp.Size = new System.Drawing.Size(593, 244);
-      this.txtCSharp.TabIndex = 0;
+      this.txtCSharp.TabIndex = 23;
       // 
       // tpViewData
       // 
@@ -216,7 +216,7 @@
       this.txtViewData.Name = "txtViewData";
       this.txtViewData.ScrollBars = System.Windows.Forms.ScrollBars.Both;
       this.txtViewData.Size = new System.Drawing.Size(593, 244);
-      this.txtViewData.TabIndex = 0;
+      this.txtViewData.TabIndex = 24;
       // 
       // tpFields
       // 
@@ -239,7 +239,7 @@
       this.cmbFilterField.Location = new System.Drawing.Point(63, 4);
       this.cmbFilterField.Name = "cmbFilterField";
       this.cmbFilterField.Size = new System.Drawing.Size(261, 21);
-      this.cmbFilterField.TabIndex = 2;
+      this.cmbFilterField.TabIndex = 26;
       this.cmbFilterField.SelectedIndexChanged += new System.EventHandler(this.cmbFilterField_SelectedIndexChanged);
       // 
       // label12
@@ -248,7 +248,7 @@
       this.label12.Location = new System.Drawing.Point(3, 7);
       this.label12.Name = "label12";
       this.label12.Size = new System.Drawing.Size(54, 13);
-      this.label12.TabIndex = 1;
+      this.label12.TabIndex = 25;
       this.label12.Text = "Filter field:";
       // 
       // txtFields
@@ -262,7 +262,7 @@
       this.txtFields.Name = "txtFields";
       this.txtFields.ScrollBars = System.Windows.Forms.ScrollBars.Both;
       this.txtFields.Size = new System.Drawing.Size(599, 219);
-      this.txtFields.TabIndex = 0;
+      this.txtFields.TabIndex = 27;
       // 
       // tpInfo
       // 
@@ -295,7 +295,7 @@
       this.chkDefaultView.Location = new System.Drawing.Point(70, 166);
       this.chkDefaultView.Name = "chkDefaultView";
       this.chkDefaultView.Size = new System.Drawing.Size(85, 17);
-      this.chkDefaultView.TabIndex = 15;
+      this.chkDefaultView.TabIndex = 40;
       this.chkDefaultView.Text = "Default view";
       this.chkDefaultView.UseVisualStyleBackColor = true;
       // 
@@ -306,7 +306,7 @@
       this.chkHiddenView.Location = new System.Drawing.Point(161, 166);
       this.chkHiddenView.Name = "chkHiddenView";
       this.chkHiddenView.Size = new System.Drawing.Size(85, 17);
-      this.chkHiddenView.TabIndex = 14;
+      this.chkHiddenView.TabIndex = 41;
       this.chkHiddenView.Text = "Hidden view";
       this.chkHiddenView.UseVisualStyleBackColor = true;
       // 
@@ -317,7 +317,7 @@
       this.chkPersonalView.Location = new System.Drawing.Point(252, 166);
       this.chkPersonalView.Name = "chkPersonalView";
       this.chkPersonalView.Size = new System.Drawing.Size(92, 17);
-      this.chkPersonalView.TabIndex = 13;
+      this.chkPersonalView.TabIndex = 42;
       this.chkPersonalView.Text = "Personal view";
       this.chkPersonalView.UseVisualStyleBackColor = true;
       // 
@@ -329,7 +329,7 @@
       this.txtCreated.Name = "txtCreated";
       this.txtCreated.ReadOnly = true;
       this.txtCreated.Size = new System.Drawing.Size(520, 20);
-      this.txtCreated.TabIndex = 11;
+      this.txtCreated.TabIndex = 35;
       // 
       // label11
       // 
@@ -337,7 +337,7 @@
       this.label11.Location = new System.Drawing.Point(3, 90);
       this.label11.Name = "label11";
       this.label11.Size = new System.Drawing.Size(47, 13);
-      this.label11.TabIndex = 10;
+      this.label11.TabIndex = 34;
       this.label11.Text = "Created:";
       // 
       // txtListTitle
@@ -348,7 +348,7 @@
       this.txtListTitle.Name = "txtListTitle";
       this.txtListTitle.ReadOnly = true;
       this.txtListTitle.Size = new System.Drawing.Size(520, 20);
-      this.txtListTitle.TabIndex = 9;
+      this.txtListTitle.TabIndex = 33;
       // 
       // label10
       // 
@@ -356,7 +356,7 @@
       this.label10.Location = new System.Drawing.Point(3, 64);
       this.label10.Name = "label10";
       this.label10.Size = new System.Drawing.Size(49, 13);
-      this.label10.TabIndex = 8;
+      this.label10.TabIndex = 32;
       this.label10.Text = "List Title:";
       // 
       // txtViewName
@@ -367,7 +367,7 @@
       this.txtViewName.Name = "txtViewName";
       this.txtViewName.ReadOnly = true;
       this.txtViewName.Size = new System.Drawing.Size(520, 20);
-      this.txtViewName.TabIndex = 7;
+      this.txtViewName.TabIndex = 39;
       // 
       // label9
       // 
@@ -375,7 +375,7 @@
       this.label9.Location = new System.Drawing.Point(3, 142);
       this.label9.Name = "label9";
       this.label9.Size = new System.Drawing.Size(64, 13);
-      this.label9.TabIndex = 6;
+      this.label9.TabIndex = 38;
       this.label9.Text = "View Name:";
       // 
       // txtViewID
@@ -386,7 +386,7 @@
       this.txtViewID.Name = "txtViewID";
       this.txtViewID.ReadOnly = true;
       this.txtViewID.Size = new System.Drawing.Size(520, 20);
-      this.txtViewID.TabIndex = 5;
+      this.txtViewID.TabIndex = 37;
       // 
       // label8
       // 
@@ -394,7 +394,7 @@
       this.label8.Location = new System.Drawing.Point(3, 116);
       this.label8.Name = "label8";
       this.label8.Size = new System.Drawing.Size(47, 13);
-      this.label8.TabIndex = 4;
+      this.label8.TabIndex = 36;
       this.label8.Text = "View ID:";
       // 
       // txtListName
@@ -405,7 +405,7 @@
       this.txtListName.Name = "txtListName";
       this.txtListName.ReadOnly = true;
       this.txtListName.Size = new System.Drawing.Size(520, 20);
-      this.txtListName.TabIndex = 3;
+      this.txtListName.TabIndex = 31;
       // 
       // label7
       // 
@@ -413,7 +413,7 @@
       this.label7.Location = new System.Drawing.Point(3, 38);
       this.label7.Name = "label7";
       this.label7.Size = new System.Drawing.Size(57, 13);
-      this.label7.TabIndex = 2;
+      this.label7.TabIndex = 30;
       this.label7.Text = "List Name:";
       // 
       // txtListID
@@ -424,7 +424,7 @@
       this.txtListID.Name = "txtListID";
       this.txtListID.ReadOnly = true;
       this.txtListID.Size = new System.Drawing.Size(520, 20);
-      this.txtListID.TabIndex = 1;
+      this.txtListID.TabIndex = 29;
       // 
       // label6
       // 
@@ -432,7 +432,7 @@
       this.label6.Location = new System.Drawing.Point(3, 12);
       this.label6.Name = "label6";
       this.label6.Size = new System.Drawing.Size(40, 13);
-      this.label6.TabIndex = 0;
+      this.label6.TabIndex = 28;
       this.label6.Text = "List ID:";
       // 
       // tpRandomGuid
@@ -457,7 +457,7 @@
       this.txtRandomGuid.ReadOnly = true;
       this.txtRandomGuid.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
       this.txtRandomGuid.Size = new System.Drawing.Size(465, 244);
-      this.txtRandomGuid.TabIndex = 1;
+      this.txtRandomGuid.TabIndex = 43;
       // 
       // btnRandomGuid
       // 
@@ -465,7 +465,7 @@
       this.btnRandomGuid.Location = new System.Drawing.Point(515, 3);
       this.btnRandomGuid.Name = "btnRandomGuid";
       this.btnRandomGuid.Size = new System.Drawing.Size(75, 23);
-      this.btnRandomGuid.TabIndex = 0;
+      this.btnRandomGuid.TabIndex = 44;
       this.btnRandomGuid.Text = "Refresh";
       this.btnRandomGuid.UseVisualStyleBackColor = true;
       this.btnRandomGuid.Click += new System.EventHandler(this.btnRandomGuid_Click);
@@ -476,7 +476,7 @@
       this.label2.Location = new System.Drawing.Point(7, 56);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(26, 13);
-      this.label2.TabIndex = 5;
+      this.label2.TabIndex = 203;
       this.label2.Text = "List:";
       // 
       // cmbLists
@@ -495,7 +495,7 @@
       this.label3.Location = new System.Drawing.Point(264, 57);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(33, 13);
-      this.label3.TabIndex = 7;
+      this.label3.TabIndex = 204;
       this.label3.Text = "View:";
       // 
       // cmbViews
@@ -528,7 +528,7 @@
       this.label4.Location = new System.Drawing.Point(7, 32);
       this.label4.Name = "label4";
       this.label4.Size = new System.Drawing.Size(32, 13);
-      this.label4.TabIndex = 10;
+      this.label4.TabIndex = 201;
       this.label4.Text = "User:";
       // 
       // txtUser
@@ -536,7 +536,7 @@
       this.txtUser.Location = new System.Drawing.Point(58, 29);
       this.txtUser.Name = "txtUser";
       this.txtUser.Size = new System.Drawing.Size(200, 20);
-      this.txtUser.TabIndex = 3;
+      this.txtUser.TabIndex = 1;
       this.toolTip1.SetToolTip(this.txtUser, "insert username");
       // 
       // label5
@@ -545,7 +545,7 @@
       this.label5.Location = new System.Drawing.Point(264, 32);
       this.label5.Name = "label5";
       this.label5.Size = new System.Drawing.Size(56, 13);
-      this.label5.TabIndex = 12;
+      this.label5.TabIndex = 201;
       this.label5.Text = "Password:";
       // 
       // lblWait
@@ -555,7 +555,7 @@
       this.lblWait.Location = new System.Drawing.Point(481, 53);
       this.lblWait.Name = "lblWait";
       this.lblWait.Size = new System.Drawing.Size(119, 21);
-      this.lblWait.TabIndex = 14;
+      this.lblWait.TabIndex = 100;
       this.lblWait.Text = "Wait...";
       this.lblWait.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
       this.lblWait.Visible = false;
@@ -568,7 +568,7 @@
       this.txtPwd.Name = "txtPwd";
       this.txtPwd.PasswordChar = '*';
       this.txtPwd.Size = new System.Drawing.Size(149, 20);
-      this.txtPwd.TabIndex = 4;
+      this.txtPwd.TabIndex = 2;
       this.toolTip1.SetToolTip(this.txtPwd, "insert password");
       // 
       // btnCopy
@@ -580,7 +580,7 @@
       this.btnCopy.Location = new System.Drawing.Point(582, 77);
       this.btnCopy.Name = "btnCopy";
       this.btnCopy.Size = new System.Drawing.Size(21, 21);
-      this.btnCopy.TabIndex = 15;
+      this.btnCopy.TabIndex = 21;
       this.toolTip1.SetToolTip(this.btnCopy, "Copy text");
       this.btnCopy.UseVisualStyleBackColor = true;
       this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
@@ -594,7 +594,7 @@
       this.chkTryFindWebUrl.Location = new System.Drawing.Point(481, 9);
       this.chkTryFindWebUrl.Name = "chkTryFindWebUrl";
       this.chkTryFindWebUrl.Size = new System.Drawing.Size(15, 14);
-      this.chkTryFindWebUrl.TabIndex = 16;
+      this.chkTryFindWebUrl.TabIndex = 3;
       this.toolTip1.SetToolTip(this.chkTryFindWebUrl, "Try to find correct web url");
       this.chkTryFindWebUrl.UseVisualStyleBackColor = true;
       // 
