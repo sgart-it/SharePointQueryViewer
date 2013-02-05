@@ -7,7 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Linq;
+using Microsoft.SharePoint.Client;
 using SP = Microsoft.SharePoint.Client;
+using Microsoft.SharePoint.Client.Utilities;
 using SPU = Microsoft.SharePoint.Client.Utilities;
 using System.Diagnostics;
 using System.Net;
@@ -32,11 +35,15 @@ namespace SgartSPQueryViewer
             txtCSharp.Text = "";
             txtCaml.Text = "";
             txtViewData.Text = "";
+
             txtCaml.Enabled = false;
             txtCSharp.Enabled = false;
             txtViewData.Enabled = false;
             //tabControl1.Enabled = false;
             btnCopy.Enabled = false;
+
+            cmbFilterField.Enabled = false;
+            txtFields.Text = "";
 
             btnConnect.Enabled = false;
             cmbLists.Enabled = false;
@@ -96,7 +103,7 @@ namespace SgartSPQueryViewer
             return ctx;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnConnect_Click(object sender, EventArgs e)
         {
             if (btnConnect.Enabled == false)
                 return;
@@ -119,6 +126,17 @@ namespace SgartSPQueryViewer
             lblWait.Visible = true;
             lblViewName.Text = "";
             btnCopy.Enabled = false;
+
+            cmbFilterField.Enabled = false;
+            txtFields.Text = "";
+
+            txtListID.Text = "";
+            txtListName.Text = "";
+            txtListTitle.Text = "";
+            txtCreated.Text = "";
+            txtViewID.Text = "";
+            txtViewName.Text = "";
+
             Application.DoEvents();
 
             try
@@ -168,7 +186,7 @@ namespace SgartSPQueryViewer
                             ProxyUser = frmProxy.ProxyUser;
                             ProxyPwd = frmProxy.ProxyPwd;
                             resolved = true;
-                            button1_Click(null, null);
+                            btnConnect_Click(null, null);
                         }
                     }
                 }
@@ -354,6 +372,17 @@ namespace SgartSPQueryViewer
 
         private void cmbViews_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LoadDetailView(false);
+        }
+
+        private void btnResultsRefresh_Click(object sender, EventArgs e)
+        {
+            LoadDetailView(true);
+        }
+
+        private void LoadDetailView(bool loadData){
+            dgResults.DataSource = null;
+
             lblWait.Visible = true;
             txtCaml.Enabled = false;
             txtCSharp.Enabled = false;
@@ -363,10 +392,13 @@ namespace SgartSPQueryViewer
             lblViewName.Text = "";
             btnCopy.Enabled = false;
 
-            txtListName.Text = "";
             txtListID.Text = "";
+            txtListName.Text = "";
+            txtListTitle.Text = "";
+            txtCreated.Text = "";
             txtViewID.Text = "";
             txtViewName.Text = "";
+            btnResultsRefresh.Enabled = false;
 
             Application.DoEvents();
 
@@ -388,6 +420,7 @@ namespace SgartSPQueryViewer
                     ctx.Load(list.RootFolder);
                     ctx.Load(view);
                     ctx.Load(view.ViewFields);
+
                     ctx.ExecuteQuery();
 
                     if (view != null)
@@ -403,6 +436,10 @@ namespace SgartSPQueryViewer
                         sb.AppendFormat("<ViewFields>{0}</ViewFields>", view.ViewFields.SchemaXml);
                         sb.Append("</View>");
                         txtCaml.Text = FormatXml(sb.ToString());
+                        if (loadData == false)
+                        {
+                            txtResultsNumber.Text = view.RowLimit.ToString();
+                        }
 
                         txtViewData.Text = FormatXml(view.HtmlSchemaXml);
 
@@ -410,11 +447,20 @@ namespace SgartSPQueryViewer
 
                         LoadInfo(list, view);
 
+                        if (loadData == true)
+                        {
+                            LoadItems(ctx, list, view);
+                        }
+
                         //tabControl1.Enabled = true;
                         txtCaml.Enabled = true;
                         txtCSharp.Enabled = true;
                         txtViewData.Enabled = true;
                         btnCopy.Enabled = true;
+                        btnResultsRefresh.Enabled = true;
+
+                        cmbFilterField.Enabled = true;
+
                     }
                 }
             }
@@ -427,6 +473,53 @@ namespace SgartSPQueryViewer
                 lblWait.Visible = false;
             }
 
+        }
+
+        private void LoadItems(SP.ClientContext ctx, SP.List list, SP.View view)
+        {
+            SP.CamlQuery query = new SP.CamlQuery();
+            query.ViewXml = "<View>" +  view.ViewQuery + "<RowLimit>" + txtResultsNumber.Text + "</RowLimit></View>";
+            var items = list.GetItems(query);
+            ctx.Load(items, itms => itms.ListItemCollectionPosition
+                , itms => itms.Include(
+                    itm => itm.FieldValuesAsText
+                    , itm => itm.ContentType
+                    )
+                );
+            ctx.ExecuteQuery();
+
+            DataTable tbl = new DataTable();
+            DataColumnCollection columns = tbl.Columns;
+            DataRowCollection rows = tbl.Rows;
+
+            if (items != null && items.Count > 0)
+            {
+                columns.Add("N.", typeof(System.String));
+                columns.Add("ContentType", typeof(System.String));
+                foreach (var fld in items[0].FieldValuesAsText.FieldValues)
+                {
+                    columns.Add(fld.Key, typeof(System.String));
+                }
+                int i = 1;
+                foreach (var item in items)
+                {
+                    DataRow row = tbl.NewRow();
+                    row["N."] = i;
+                    row["ContentType"] = item.ContentType.Name;
+                    foreach (var fld in item.FieldValuesAsText.FieldValues)
+                    {
+                        if (fld.Value != null)
+                        {
+                            row[fld.Key] = item.FieldValuesAsText[fld.Key];
+                        }
+                    }
+                    rows.Add(row);
+                    i++;
+                }
+            }
+            dgResults.AutoGenerateColumns = true;
+            dgResults.AutoSize = true;
+            dgResults.DataSource = tbl;
         }
 
         private void LoadInfo(SP.List list, SP.View view)
@@ -576,7 +669,23 @@ using (SPSite site = new SPSite(url))
             txtRandomGuid.Text = sb.ToString();
         }
 
+        private void txtResultsNumber_Leave(object sender, EventArgs e)
+        {
+            TextBox txt = (TextBox)sender;
+            int v = 30;
+            if (Int32.TryParse(txt.Text, out v) == true)
+            {
+                if (v < -1)
+                {
+                    txt.Text = "-1";
+                }
+            }
+            else
+            {
+                txt.Text = v.ToString();
+            }
 
+        }
 
     }
 }
