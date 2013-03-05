@@ -109,8 +109,6 @@ namespace SgartSPQueryViewer
                 return;
 
             string webUrl = txtUrl.Text;
-            if (chkTryFindWebUrl.Checked)
-                webUrl = TryToFindCorrectUrl(webUrl);
 
             cmbLists.Items.Clear();
             cmbLists.Enabled = false;
@@ -141,6 +139,10 @@ namespace SgartSPQueryViewer
 
             try
             {
+            if (chkTryFindWebUrl.Checked)
+                webUrl = TryToFindCorrectUrl(webUrl);
+
+
                 using (SP.ClientContext ctx = GetClientContext(webUrl))
                 {
                     SP.Web web = ctx.Web;
