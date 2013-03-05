@@ -61,15 +61,15 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtListID = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.tpRandomGuid = new System.Windows.Forms.TabPage();
-            this.txtRandomGuid = new System.Windows.Forms.TextBox();
-            this.btnRandomGuid = new System.Windows.Forms.Button();
             this.tpResults = new System.Windows.Forms.TabPage();
             this.dgResults = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnResultsRefresh = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.txtResultsNumber = new System.Windows.Forms.TextBox();
+            this.tpRandomGuid = new System.Windows.Forms.TabPage();
+            this.txtRandomGuid = new System.Windows.Forms.TextBox();
+            this.btnRandomGuid = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbLists = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -84,16 +84,22 @@
             this.chkTryFindWebUrl = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.tpContentTypes = new System.Windows.Forms.TabPage();
+            this.txtContentTypes = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.cmbFilterContentType = new System.Windows.Forms.ComboBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tabControl1.SuspendLayout();
             this.tpCaml.SuspendLayout();
             this.tpCSharp.SuspendLayout();
             this.tpViewData.SuspendLayout();
             this.tpFields.SuspendLayout();
             this.tpInfo.SuspendLayout();
-            this.tpRandomGuid.SuspendLayout();
             this.tpResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgResults)).BeginInit();
             this.panel1.SuspendLayout();
+            this.tpRandomGuid.SuspendLayout();
+            this.tpContentTypes.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -137,6 +143,7 @@
             this.tabControl1.Controls.Add(this.tpCSharp);
             this.tabControl1.Controls.Add(this.tpViewData);
             this.tabControl1.Controls.Add(this.tpFields);
+            this.tabControl1.Controls.Add(this.tpContentTypes);
             this.tabControl1.Controls.Add(this.tpInfo);
             this.tabControl1.Controls.Add(this.tpResults);
             this.tabControl1.Controls.Add(this.tpRandomGuid);
@@ -246,7 +253,7 @@
             this.cmbFilterField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbFilterField.FormattingEnabled = true;
-            this.cmbFilterField.Location = new System.Drawing.Point(63, 4);
+            this.cmbFilterField.Location = new System.Drawing.Point(77, 4);
             this.cmbFilterField.Name = "cmbFilterField";
             this.cmbFilterField.Size = new System.Drawing.Size(261, 21);
             this.cmbFilterField.TabIndex = 26;
@@ -255,7 +262,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 7);
+            this.label12.Location = new System.Drawing.Point(8, 7);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(54, 13);
             this.label12.TabIndex = 25;
@@ -445,41 +452,6 @@
             this.label6.TabIndex = 28;
             this.label6.Text = "List ID:";
             // 
-            // tpRandomGuid
-            // 
-            this.tpRandomGuid.Controls.Add(this.txtRandomGuid);
-            this.tpRandomGuid.Controls.Add(this.btnRandomGuid);
-            this.tpRandomGuid.Location = new System.Drawing.Point(4, 22);
-            this.tpRandomGuid.Name = "tpRandomGuid";
-            this.tpRandomGuid.Size = new System.Drawing.Size(599, 250);
-            this.tpRandomGuid.TabIndex = 5;
-            this.tpRandomGuid.Text = "Random Guid";
-            this.tpRandomGuid.UseVisualStyleBackColor = true;
-            // 
-            // txtRandomGuid
-            // 
-            this.txtRandomGuid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRandomGuid.Location = new System.Drawing.Point(6, 3);
-            this.txtRandomGuid.Multiline = true;
-            this.txtRandomGuid.Name = "txtRandomGuid";
-            this.txtRandomGuid.ReadOnly = true;
-            this.txtRandomGuid.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.txtRandomGuid.Size = new System.Drawing.Size(465, 244);
-            this.txtRandomGuid.TabIndex = 43;
-            // 
-            // btnRandomGuid
-            // 
-            this.btnRandomGuid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRandomGuid.Location = new System.Drawing.Point(515, 3);
-            this.btnRandomGuid.Name = "btnRandomGuid";
-            this.btnRandomGuid.Size = new System.Drawing.Size(75, 23);
-            this.btnRandomGuid.TabIndex = 44;
-            this.btnRandomGuid.Text = "Refresh";
-            this.btnRandomGuid.UseVisualStyleBackColor = true;
-            this.btnRandomGuid.Click += new System.EventHandler(this.btnRandomGuid_Click);
-            // 
             // tpResults
             // 
             this.tpResults.Controls.Add(this.dgResults);
@@ -542,6 +514,41 @@
             this.txtResultsNumber.TabIndex = 1;
             this.txtResultsNumber.Text = "30";
             this.txtResultsNumber.Leave += new System.EventHandler(this.txtResultsNumber_Leave);
+            // 
+            // tpRandomGuid
+            // 
+            this.tpRandomGuid.Controls.Add(this.txtRandomGuid);
+            this.tpRandomGuid.Controls.Add(this.btnRandomGuid);
+            this.tpRandomGuid.Location = new System.Drawing.Point(4, 22);
+            this.tpRandomGuid.Name = "tpRandomGuid";
+            this.tpRandomGuid.Size = new System.Drawing.Size(599, 250);
+            this.tpRandomGuid.TabIndex = 5;
+            this.tpRandomGuid.Text = "Random Guid";
+            this.tpRandomGuid.UseVisualStyleBackColor = true;
+            // 
+            // txtRandomGuid
+            // 
+            this.txtRandomGuid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRandomGuid.Location = new System.Drawing.Point(6, 3);
+            this.txtRandomGuid.Multiline = true;
+            this.txtRandomGuid.Name = "txtRandomGuid";
+            this.txtRandomGuid.ReadOnly = true;
+            this.txtRandomGuid.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.txtRandomGuid.Size = new System.Drawing.Size(465, 244);
+            this.txtRandomGuid.TabIndex = 43;
+            // 
+            // btnRandomGuid
+            // 
+            this.btnRandomGuid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRandomGuid.Location = new System.Drawing.Point(515, 3);
+            this.btnRandomGuid.Name = "btnRandomGuid";
+            this.btnRandomGuid.Size = new System.Drawing.Size(75, 23);
+            this.btnRandomGuid.TabIndex = 44;
+            this.btnRandomGuid.Text = "Refresh";
+            this.btnRandomGuid.UseVisualStyleBackColor = true;
+            this.btnRandomGuid.Click += new System.EventHandler(this.btnRandomGuid_Click);
             // 
             // label2
             // 
@@ -681,12 +688,67 @@
             this.linkLabel2.TabIndex = 17;
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // tpContentTypes
+            // 
+            this.tpContentTypes.Controls.Add(this.cmbFilterContentType);
+            this.tpContentTypes.Controls.Add(this.label14);
+            this.tpContentTypes.Controls.Add(this.txtContentTypes);
+            this.tpContentTypes.Location = new System.Drawing.Point(4, 22);
+            this.tpContentTypes.Name = "tpContentTypes";
+            this.tpContentTypes.Padding = new System.Windows.Forms.Padding(3);
+            this.tpContentTypes.Size = new System.Drawing.Size(599, 250);
+            this.tpContentTypes.TabIndex = 7;
+            this.tpContentTypes.Text = "Content Types";
+            this.tpContentTypes.ToolTipText = "All content types in the list";
+            this.tpContentTypes.UseVisualStyleBackColor = true;
+            // 
+            // txtContentTypes
+            // 
+            this.txtContentTypes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtContentTypes.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContentTypes.Location = new System.Drawing.Point(0, 31);
+            this.txtContentTypes.Multiline = true;
+            this.txtContentTypes.Name = "txtContentTypes";
+            this.txtContentTypes.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtContentTypes.Size = new System.Drawing.Size(599, 219);
+            this.txtContentTypes.TabIndex = 28;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(8, 7);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(70, 13);
+            this.label14.TabIndex = 29;
+            this.label14.Text = "Content type:";
+            // 
+            // cmbFilterContentType
+            // 
+            this.cmbFilterContentType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbFilterContentType.FormattingEnabled = true;
+            this.cmbFilterContentType.Location = new System.Drawing.Point(77, 4);
+            this.cmbFilterContentType.Name = "cmbFilterContentType";
+            this.cmbFilterContentType.Size = new System.Drawing.Size(261, 21);
+            this.cmbFilterContentType.TabIndex = 30;
+            this.cmbFilterContentType.SelectedIndexChanged += new System.EventHandler(this.cmbFilterContentType_SelectedIndexChanged);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(481, 71);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(119, 10);
+            this.progressBar1.TabIndex = 205;
+            // 
             // Form1
             // 
             this.AcceptButton = this.btnConnect;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(606, 356);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.lblWait);
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.chkTryFindWebUrl);
@@ -720,12 +782,14 @@
             this.tpFields.PerformLayout();
             this.tpInfo.ResumeLayout(false);
             this.tpInfo.PerformLayout();
-            this.tpRandomGuid.ResumeLayout(false);
-            this.tpRandomGuid.PerformLayout();
             this.tpResults.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgResults)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.tpRandomGuid.ResumeLayout(false);
+            this.tpRandomGuid.PerformLayout();
+            this.tpContentTypes.ResumeLayout(false);
+            this.tpContentTypes.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -787,6 +851,11 @@
     private System.Windows.Forms.Label label13;
     private System.Windows.Forms.TextBox txtResultsNumber;
     private System.Windows.Forms.Button btnResultsRefresh;
+    private System.Windows.Forms.TabPage tpContentTypes;
+    private System.Windows.Forms.TextBox txtContentTypes;
+    private System.Windows.Forms.ComboBox cmbFilterContentType;
+    private System.Windows.Forms.Label label14;
+    private System.Windows.Forms.ProgressBar progressBar1;
   }
 }
 

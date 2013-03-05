@@ -28,6 +28,11 @@ namespace SgartSPQueryViewer
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            progressBar1.Visible = false;
+            progressBar1.Minimum = 0;
+            progressBar1.Maximum = 7;
+            progressBar1.Value = 0;
+
             tpCaml.Select();
 
             ProxyUrl = "";
@@ -44,6 +49,7 @@ namespace SgartSPQueryViewer
 
             cmbFilterField.Enabled = false;
             txtFields.Text = "";
+            txtContentTypes.Text = "";
 
             btnConnect.Enabled = false;
             cmbLists.Enabled = false;
@@ -108,6 +114,9 @@ namespace SgartSPQueryViewer
             if (btnConnect.Enabled == false)
                 return;
 
+            progressBar1.Value = 1;
+            progressBar1.Visible = true;
+
             string webUrl = txtUrl.Text;
 
             cmbLists.Items.Clear();
@@ -127,6 +136,7 @@ namespace SgartSPQueryViewer
 
             cmbFilterField.Enabled = false;
             txtFields.Text = "";
+            txtContentTypes.Text = "";
 
             txtListID.Text = "";
             txtListName.Text = "";
@@ -139,16 +149,19 @@ namespace SgartSPQueryViewer
 
             try
             {
-            if (chkTryFindWebUrl.Checked)
-                webUrl = TryToFindCorrectUrl(webUrl);
+                if (chkTryFindWebUrl.Checked)
+                    webUrl = TryToFindCorrectUrl(webUrl);
 
-
+                progressBar1.Value = 1;
                 using (SP.ClientContext ctx = GetClientContext(webUrl))
                 {
                     SP.Web web = ctx.Web;
                     SP.ListCollection lists = web.Lists;
                     ctx.Load(lists);
                     ctx.ExecuteQuery();
+                    
+                    progressBar1.Value++;
+
                     txtUrl.Text = webUrl;
 
                     foreach (var list in lists)
@@ -205,6 +218,7 @@ namespace SgartSPQueryViewer
             finally
             {
                 lblWait.Visible = false;
+                progressBar1.Visible = false;
             }
         }
 
@@ -259,6 +273,9 @@ namespace SgartSPQueryViewer
 
         private void cmbLists_SelectedIndexChanged(object sender, EventArgs e)
         {
+            progressBar1.Value = 1;
+            progressBar1.Visible = true;
+
             cmbViews.Items.Clear();
             cmbViews.Enabled = false;
             //tabControl1.Enabled = false;
@@ -283,8 +300,11 @@ namespace SgartSPQueryViewer
                     ctx.Load(list.Fields);
                     ctx.Load(views);
                     ctx.ExecuteQuery();
+                    progressBar1.Value++;
 
                     LoadFields(list);
+
+                    LoadContentTypes(list);
 
                     foreach (var view in views)
                     {
@@ -305,8 +325,81 @@ namespace SgartSPQueryViewer
             finally
             {
                 lblWait.Visible = false;
+                progressBar1.Visible = false;
             }
 
+        }
+
+
+        private string allContentTypes = "";
+
+        private void LoadContentTypes(SP.List list)
+        {
+            cmbFilterContentType.Enabled = false;
+            cmbFilterContentType.Items.Clear();
+
+            if (cmbLists.SelectedIndex >= 0)
+            {
+                string webUrl = txtUrl.Text;
+
+                List<string> contentTypes = new List<string>();
+                contentTypes.Add("");
+
+                using (SP.ClientContext ctx = GetClientContext(webUrl))
+                {
+                    Web oWebsite = ctx.Web;
+                    SP.List list1 = oWebsite.Lists.GetById(list.Id);
+                    ctx.Load(list1);
+                    SP.ContentTypeCollection coll = list1.ContentTypes;
+                    ctx.Load(coll, cts => cts.Include(
+                             ct => ct.Name
+                             , ct => ct.Description
+                             , ct => ct.SchemaXml
+                            ));
+                    ctx.ExecuteQuery();
+                    progressBar1.Value++;
+
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("<ContentTypes>");
+                    foreach (var item in coll)
+                    {
+                        contentTypes.Add(item.Name + " ( " + item.Description + " )");
+                        sb.Append(item.SchemaXml);
+                    }
+                    sb.Append("</ContentTypes>");
+                    allContentTypes = sb.ToString();
+                    txtContentTypes.Text = FormatXml(allContentTypes);
+
+                    contentTypes.Sort();
+                    cmbFilterContentType.Items.AddRange(contentTypes.ToArray());
+                }
+                cmbFilterContentType.Enabled = true;
+            }
+        }
+        private void cmbFilterContentType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbFilterContentType.SelectedIndex > 0)
+            {
+                XmlDocument xDoc = new XmlDocument();
+                xDoc.LoadXml(allContentTypes);
+                string internalName = (string)cmbFilterContentType.SelectedItem;
+                int p = internalName.IndexOf('(');
+                if (p > 0)
+                    internalName = internalName.Substring(0, p).TrimEnd();
+                XmlNodeList nodes = xDoc.SelectNodes("ContentTypes/ContentType[@Name='" + internalName + "']");
+                StringBuilder sb = new StringBuilder();
+                sb.Append("<ContentTypes>");
+                foreach (XmlNode fld in nodes)
+                {
+                    sb.Append(fld.OuterXml);
+                }
+                sb.Append("</ContentTypes>");
+                txtContentTypes.Text = FormatXml(sb.ToString());
+            }
+            else
+            {
+                txtContentTypes.Text = FormatXml(allContentTypes);
+            }
         }
 
 
@@ -328,6 +421,8 @@ namespace SgartSPQueryViewer
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append("<Fields>");
+                    progressBar1.Value++;
+
                     foreach (var item in list.Fields)
                     {
                         fields.Add(item.InternalName + " ( " + item.Title + " )");
@@ -364,25 +459,35 @@ namespace SgartSPQueryViewer
                 }
                 sb.Append("</Fields>");
                 txtFields.Text = FormatXml(sb.ToString());
+                txtContentTypes.Text = FormatXml(""); //???????????????
             }
             else
             {
                 txtFields.Text = FormatXml(allFields);
+                txtContentTypes.Text = FormatXml(""); //?????????????????
             }
         }
 
 
         private void cmbViews_SelectedIndexChanged(object sender, EventArgs e)
         {
+            progressBar1.Value = 1;
+            progressBar1.Visible = true;
             LoadDetailView(false);
+            progressBar1.Visible = false;
         }
 
         private void btnResultsRefresh_Click(object sender, EventArgs e)
         {
+            progressBar1.Value = 1;
+            progressBar1.Visible = true; 
+            progressBar1.Value = 1;
             LoadDetailView(true);
+            progressBar1.Visible = false;
         }
 
-        private void LoadDetailView(bool loadData){
+        private void LoadDetailView(bool loadData)
+        {
             dgResults.DataSource = null;
 
             lblWait.Visible = true;
@@ -424,6 +529,7 @@ namespace SgartSPQueryViewer
                     ctx.Load(view.ViewFields);
 
                     ctx.ExecuteQuery();
+                    progressBar1.Value++;
 
                     if (view != null)
                     {
@@ -480,7 +586,7 @@ namespace SgartSPQueryViewer
         private void LoadItems(SP.ClientContext ctx, SP.List list, SP.View view)
         {
             SP.CamlQuery query = new SP.CamlQuery();
-            query.ViewXml = "<View>" +  view.ViewQuery + "<RowLimit>" + txtResultsNumber.Text + "</RowLimit></View>";
+            query.ViewXml = "<View>" + view.ViewQuery + "<RowLimit>" + txtResultsNumber.Text + "</RowLimit></View>";
             var items = list.GetItems(query);
             ctx.Load(items, itms => itms.ListItemCollectionPosition
                 , itms => itms.Include(
@@ -489,6 +595,7 @@ namespace SgartSPQueryViewer
                     )
                 );
             ctx.ExecuteQuery();
+            progressBar1.Value++;
 
             DataTable tbl = new DataTable();
             DataColumnCollection columns = tbl.Columns;
@@ -536,6 +643,7 @@ namespace SgartSPQueryViewer
             chkPersonalView.Checked = view.PersonalView;
             chkHiddenView.Checked = view.Hidden;
             chkDefaultView.Checked = view.DefaultView;
+            progressBar1.Value++;
 
         }
 
@@ -652,6 +760,10 @@ using (SPSite site = new SPSite(url))
                 case "tpFields":
                     txtFields.SelectAll();
                     txtFields.Copy();
+                    break;
+                case "tpContentTypes":
+                    txtContentTypes.SelectAll();
+                    txtContentTypes.Copy();
                     break;
                 default:
                     break;
