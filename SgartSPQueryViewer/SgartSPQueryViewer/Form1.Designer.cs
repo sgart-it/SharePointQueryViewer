@@ -39,12 +39,18 @@
             this.txtCaml = new System.Windows.Forms.TextBox();
             this.tpCSharp = new System.Windows.Forms.TabPage();
             this.txtCSharp = new System.Windows.Forms.TextBox();
+            this.tpListData = new System.Windows.Forms.TabPage();
+            this.txtListData = new System.Windows.Forms.TextBox();
             this.tpViewData = new System.Windows.Forms.TabPage();
             this.txtViewData = new System.Windows.Forms.TextBox();
             this.tpFields = new System.Windows.Forms.TabPage();
             this.cmbFilterField = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.txtFields = new System.Windows.Forms.TextBox();
+            this.tpContentTypes = new System.Windows.Forms.TabPage();
+            this.cmbFilterContentType = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtContentTypes = new System.Windows.Forms.TextBox();
             this.tpInfo = new System.Windows.Forms.TabPage();
             this.chkDefaultView = new System.Windows.Forms.CheckBox();
             this.chkHiddenView = new System.Windows.Forms.CheckBox();
@@ -84,22 +90,19 @@
             this.chkTryFindWebUrl = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.tpContentTypes = new System.Windows.Forms.TabPage();
-            this.txtContentTypes = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.cmbFilterContentType = new System.Windows.Forms.ComboBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tabControl1.SuspendLayout();
             this.tpCaml.SuspendLayout();
             this.tpCSharp.SuspendLayout();
+            this.tpListData.SuspendLayout();
             this.tpViewData.SuspendLayout();
             this.tpFields.SuspendLayout();
+            this.tpContentTypes.SuspendLayout();
             this.tpInfo.SuspendLayout();
             this.tpResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgResults)).BeginInit();
             this.panel1.SuspendLayout();
             this.tpRandomGuid.SuspendLayout();
-            this.tpContentTypes.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -141,6 +144,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tpCaml);
             this.tabControl1.Controls.Add(this.tpCSharp);
+            this.tabControl1.Controls.Add(this.tpListData);
             this.tabControl1.Controls.Add(this.tpViewData);
             this.tabControl1.Controls.Add(this.tpFields);
             this.tabControl1.Controls.Add(this.tpContentTypes);
@@ -212,6 +216,28 @@
             this.txtCSharp.Size = new System.Drawing.Size(593, 244);
             this.txtCSharp.TabIndex = 23;
             // 
+            // tpListData
+            // 
+            this.tpListData.Controls.Add(this.txtListData);
+            this.tpListData.Location = new System.Drawing.Point(4, 22);
+            this.tpListData.Name = "tpListData";
+            this.tpListData.Padding = new System.Windows.Forms.Padding(3);
+            this.tpListData.Size = new System.Drawing.Size(599, 250);
+            this.tpListData.TabIndex = 8;
+            this.tpListData.Text = "List Schema";
+            this.tpListData.ToolTipText = "Schema XML of selected list";
+            this.tpListData.UseVisualStyleBackColor = true;
+            // 
+            // txtListData
+            // 
+            this.txtListData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtListData.Location = new System.Drawing.Point(3, 3);
+            this.txtListData.Multiline = true;
+            this.txtListData.Name = "txtListData";
+            this.txtListData.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtListData.Size = new System.Drawing.Size(593, 244);
+            this.txtListData.TabIndex = 0;
+            // 
             // tpViewData
             // 
             this.tpViewData.Controls.Add(this.txtViewData);
@@ -280,6 +306,53 @@
             this.txtFields.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtFields.Size = new System.Drawing.Size(599, 219);
             this.txtFields.TabIndex = 27;
+            // 
+            // tpContentTypes
+            // 
+            this.tpContentTypes.Controls.Add(this.cmbFilterContentType);
+            this.tpContentTypes.Controls.Add(this.label14);
+            this.tpContentTypes.Controls.Add(this.txtContentTypes);
+            this.tpContentTypes.Location = new System.Drawing.Point(4, 22);
+            this.tpContentTypes.Name = "tpContentTypes";
+            this.tpContentTypes.Padding = new System.Windows.Forms.Padding(3);
+            this.tpContentTypes.Size = new System.Drawing.Size(599, 250);
+            this.tpContentTypes.TabIndex = 7;
+            this.tpContentTypes.Text = "Content Types";
+            this.tpContentTypes.ToolTipText = "All content types in the list";
+            this.tpContentTypes.UseVisualStyleBackColor = true;
+            // 
+            // cmbFilterContentType
+            // 
+            this.cmbFilterContentType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbFilterContentType.FormattingEnabled = true;
+            this.cmbFilterContentType.Location = new System.Drawing.Point(77, 4);
+            this.cmbFilterContentType.Name = "cmbFilterContentType";
+            this.cmbFilterContentType.Size = new System.Drawing.Size(261, 21);
+            this.cmbFilterContentType.TabIndex = 30;
+            this.cmbFilterContentType.SelectedIndexChanged += new System.EventHandler(this.cmbFilterContentType_SelectedIndexChanged);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(8, 7);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(70, 13);
+            this.label14.TabIndex = 29;
+            this.label14.Text = "Content type:";
+            // 
+            // txtContentTypes
+            // 
+            this.txtContentTypes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtContentTypes.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContentTypes.Location = new System.Drawing.Point(0, 31);
+            this.txtContentTypes.Multiline = true;
+            this.txtContentTypes.Name = "txtContentTypes";
+            this.txtContentTypes.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtContentTypes.Size = new System.Drawing.Size(599, 219);
+            this.txtContentTypes.TabIndex = 28;
             // 
             // tpInfo
             // 
@@ -472,6 +545,7 @@
             this.dgResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgResults.Location = new System.Drawing.Point(3, 37);
             this.dgResults.Name = "dgResults";
+            this.dgResults.ReadOnly = true;
             this.dgResults.Size = new System.Drawing.Size(593, 210);
             this.dgResults.TabIndex = 3;
             // 
@@ -688,55 +762,9 @@
             this.linkLabel2.TabIndex = 17;
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // tpContentTypes
-            // 
-            this.tpContentTypes.Controls.Add(this.cmbFilterContentType);
-            this.tpContentTypes.Controls.Add(this.label14);
-            this.tpContentTypes.Controls.Add(this.txtContentTypes);
-            this.tpContentTypes.Location = new System.Drawing.Point(4, 22);
-            this.tpContentTypes.Name = "tpContentTypes";
-            this.tpContentTypes.Padding = new System.Windows.Forms.Padding(3);
-            this.tpContentTypes.Size = new System.Drawing.Size(599, 250);
-            this.tpContentTypes.TabIndex = 7;
-            this.tpContentTypes.Text = "Content Types";
-            this.tpContentTypes.ToolTipText = "All content types in the list";
-            this.tpContentTypes.UseVisualStyleBackColor = true;
-            // 
-            // txtContentTypes
-            // 
-            this.txtContentTypes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtContentTypes.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContentTypes.Location = new System.Drawing.Point(0, 31);
-            this.txtContentTypes.Multiline = true;
-            this.txtContentTypes.Name = "txtContentTypes";
-            this.txtContentTypes.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtContentTypes.Size = new System.Drawing.Size(599, 219);
-            this.txtContentTypes.TabIndex = 28;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(8, 7);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(70, 13);
-            this.label14.TabIndex = 29;
-            this.label14.Text = "Content type:";
-            // 
-            // cmbFilterContentType
-            // 
-            this.cmbFilterContentType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbFilterContentType.FormattingEnabled = true;
-            this.cmbFilterContentType.Location = new System.Drawing.Point(77, 4);
-            this.cmbFilterContentType.Name = "cmbFilterContentType";
-            this.cmbFilterContentType.Size = new System.Drawing.Size(261, 21);
-            this.cmbFilterContentType.TabIndex = 30;
-            this.cmbFilterContentType.SelectedIndexChanged += new System.EventHandler(this.cmbFilterContentType_SelectedIndexChanged);
-            // 
             // progressBar1
             // 
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar1.Location = new System.Drawing.Point(481, 71);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(119, 10);
@@ -776,10 +804,14 @@
             this.tpCaml.PerformLayout();
             this.tpCSharp.ResumeLayout(false);
             this.tpCSharp.PerformLayout();
+            this.tpListData.ResumeLayout(false);
+            this.tpListData.PerformLayout();
             this.tpViewData.ResumeLayout(false);
             this.tpViewData.PerformLayout();
             this.tpFields.ResumeLayout(false);
             this.tpFields.PerformLayout();
+            this.tpContentTypes.ResumeLayout(false);
+            this.tpContentTypes.PerformLayout();
             this.tpInfo.ResumeLayout(false);
             this.tpInfo.PerformLayout();
             this.tpResults.ResumeLayout(false);
@@ -788,8 +820,6 @@
             this.panel1.PerformLayout();
             this.tpRandomGuid.ResumeLayout(false);
             this.tpRandomGuid.PerformLayout();
-            this.tpContentTypes.ResumeLayout(false);
-            this.tpContentTypes.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -856,6 +886,8 @@
     private System.Windows.Forms.ComboBox cmbFilterContentType;
     private System.Windows.Forms.Label label14;
     private System.Windows.Forms.ProgressBar progressBar1;
+    private System.Windows.Forms.TabPage tpListData;
+    private System.Windows.Forms.TextBox txtListData;
   }
 }
 

@@ -37,23 +37,26 @@ namespace SgartSPQueryViewer
 
             ProxyUrl = "";
 
-            txtCSharp.Text = "";
-            txtCaml.Text = "";
-            txtViewData.Text = "";
+            txtCSharp.Clear();
+            txtCaml.Clear();
+            txtListData.Clear();
+            txtViewData.Clear();
 
             txtCaml.Enabled = false;
             txtCSharp.Enabled = false;
+            txtListData.Enabled = false;
             txtViewData.Enabled = false;
             //tabControl1.Enabled = false;
             btnCopy.Enabled = false;
 
             cmbFilterField.Enabled = false;
-            txtFields.Text = "";
-            txtContentTypes.Text = "";
+            txtFields.Clear();
+            txtContentTypes.Clear();
 
             btnConnect.Enabled = false;
             cmbLists.Enabled = false;
             cmbViews.Enabled = false;
+            cmbViews.ResetText();
 
             ServicePointManager.ServerCertificateValidationCallback = delegate(object sender1, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
             {
@@ -122,12 +125,17 @@ namespace SgartSPQueryViewer
             cmbLists.Items.Clear();
             cmbLists.Enabled = false;
             cmbViews.Items.Clear();
+            cmbViews.ResetText();
             cmbViews.Enabled = false;
-            txtCSharp.Text = "";
-            txtCaml.Text = "";
-            txtViewData.Text = "";
+
+            txtCaml.Clear();
+            txtCSharp.Clear();
+            txtListData.Clear();
+            txtViewData.Clear();
+
+            txtCaml.Enabled = false;
             txtCSharp.Enabled = false;
-            txtCSharp.Enabled = false;
+            txtListData.Enabled = false;
             txtViewData.Enabled = false;
             //tabControl1.Enabled = false;
             lblWait.Visible = true;
@@ -135,15 +143,15 @@ namespace SgartSPQueryViewer
             btnCopy.Enabled = false;
 
             cmbFilterField.Enabled = false;
-            txtFields.Text = "";
-            txtContentTypes.Text = "";
+            txtFields.Clear();
+            txtContentTypes.Clear();
 
-            txtListID.Text = "";
-            txtListName.Text = "";
-            txtListTitle.Text = "";
-            txtCreated.Text = "";
-            txtViewID.Text = "";
-            txtViewName.Text = "";
+            txtListID.Clear();
+            txtListName.Clear();
+            txtListTitle.Clear();
+            txtCreated.Clear();
+            txtViewID.Clear();
+            txtViewName.Clear();
 
             Application.DoEvents();
 
@@ -159,7 +167,7 @@ namespace SgartSPQueryViewer
                     SP.ListCollection lists = web.Lists;
                     ctx.Load(lists);
                     ctx.ExecuteQuery();
-                    
+
                     progressBar1.Value++;
 
                     txtUrl.Text = webUrl;
@@ -277,13 +285,21 @@ namespace SgartSPQueryViewer
             progressBar1.Visible = true;
 
             cmbViews.Items.Clear();
+            cmbViews.ResetText();
             cmbViews.Enabled = false;
             //tabControl1.Enabled = false;
-            txtCaml.Text = "";
-            txtCSharp.Text = "";
+            txtCaml.Clear();
+            txtCSharp.Clear();
+            txtListData.Clear();
+            txtListData.Enabled = false;
+            txtViewData.Clear();
+            txtViewID.Clear();
+            txtViewName.Clear();
             lblWait.Visible = true;
             lblViewName.Text = "";
             btnCopy.Enabled = false;
+            dgResults.DataSource = null;
+
             Application.DoEvents();
 
             try
@@ -297,10 +313,13 @@ namespace SgartSPQueryViewer
                     SP.List list = web.Lists.GetByTitle(listTitle);
                     SP.ViewCollection views = list.Views;
                     ctx.Load(list);
+                    ctx.Load(list, x => x.SchemaXml);
                     ctx.Load(list.Fields);
                     ctx.Load(views);
                     ctx.ExecuteQuery();
                     progressBar1.Value++;
+
+                    txtListData.Text = FormatXml(list.SchemaXml);
 
                     LoadFields(list);
 
@@ -314,8 +333,8 @@ namespace SgartSPQueryViewer
                     {
                         cmbViews.SelectedIndex = 0;
                     }
-
                     cmbViews.Enabled = true;
+                    txtListData.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -459,12 +478,10 @@ namespace SgartSPQueryViewer
                 }
                 sb.Append("</Fields>");
                 txtFields.Text = FormatXml(sb.ToString());
-                txtContentTypes.Text = FormatXml(""); //???????????????
             }
             else
             {
                 txtFields.Text = FormatXml(allFields);
-                txtContentTypes.Text = FormatXml(""); //?????????????????
             }
         }
 
@@ -480,7 +497,7 @@ namespace SgartSPQueryViewer
         private void btnResultsRefresh_Click(object sender, EventArgs e)
         {
             progressBar1.Value = 1;
-            progressBar1.Visible = true; 
+            progressBar1.Visible = true;
             progressBar1.Value = 1;
             LoadDetailView(true);
             progressBar1.Visible = false;
@@ -490,21 +507,28 @@ namespace SgartSPQueryViewer
         {
             dgResults.DataSource = null;
 
+            string viewTitle = (string)cmbViews.SelectedItem;
+            if (string.IsNullOrEmpty(viewTitle))
+            {
+                MessageBox.Show("No view found", "SgartSPQueryViewer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             lblWait.Visible = true;
             txtCaml.Enabled = false;
             txtCSharp.Enabled = false;
-            txtCaml.Text = "";
-            txtCSharp.Text = "";
+            txtCaml.Clear();
+            txtCSharp.Clear();
             //tabControl1.Enabled = false;
             lblViewName.Text = "";
             btnCopy.Enabled = false;
 
-            txtListID.Text = "";
-            txtListName.Text = "";
-            txtListTitle.Text = "";
-            txtCreated.Text = "";
-            txtViewID.Text = "";
-            txtViewName.Text = "";
+            txtListID.Clear();
+            txtListName.Clear();
+            txtListTitle.Clear();
+            txtCreated.Clear();
+            txtViewID.Clear();
+            txtViewName.Clear();
             btnResultsRefresh.Enabled = false;
 
             Application.DoEvents();
@@ -519,8 +543,6 @@ namespace SgartSPQueryViewer
 
                     string listTitle = (string)cmbLists.SelectedItem;
                     SP.List list = web.Lists.GetByTitle(listTitle);
-
-                    string viewTitle = (string)cmbViews.SelectedItem;
                     SP.View view = list.Views.GetByTitle(viewTitle);
                     //ctx.Load(view, w => w.ViewQuery, w => w.ViewFields, w => w.ViewData, w => w.Title, w => w.HtmlSchemaXml);
                     ctx.Load(list);
@@ -723,6 +745,8 @@ using (SPSite site = new SPSite(url))
         query.Query = @""{0}"";
         query.RowLimit = 0;
         query.ViewFields = @""{1}"";
+        query.ViewFieldsOnly = true;
+        query.ViewAttributes = ""Scope='{3}'"";     //Default, FilesOnly, Recursive, RecursiveAll
         SPListItemCollection items = list.GetItems(query);
         Console.WriteLine(""Items found: "" + items.Count);
         foreach (SPListItem item in items)
@@ -736,7 +760,7 @@ using (SPSite site = new SPSite(url))
         }}
     }}
 }}
-", view.ViewQuery.Replace("\"", "'"), view.ViewFields.SchemaXml.Replace("\"", "'"), firstField);
+", view.ViewQuery.Replace("\"", "'"), view.ViewFields.SchemaXml.Replace("\"", "'"), firstField, view.Scope);
 
             return sb.ToString();
         }
@@ -752,6 +776,10 @@ using (SPSite site = new SPSite(url))
                 case "tpCSharp":
                     txtCSharp.SelectAll();
                     txtCSharp.Copy();
+                    break;
+                case "tpListData":
+                    txtListData.SelectAll();
+                    txtListData.Copy();
                     break;
                 case "tpViewData":
                     txtViewData.SelectAll();
@@ -772,7 +800,7 @@ using (SPSite site = new SPSite(url))
 
         private void btnRandomGuid_Click(object sender, EventArgs e)
         {
-            txtRandomGuid.Text = "";
+            txtRandomGuid.Clear();
             Application.DoEvents();
 
             StringBuilder sb = new StringBuilder();
