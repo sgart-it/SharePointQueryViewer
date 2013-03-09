@@ -91,6 +91,8 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.txtItemCount = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tpCaml.SuspendLayout();
             this.tpCSharp.SuspendLayout();
@@ -356,6 +358,8 @@
             // 
             // tpInfo
             // 
+            this.tpInfo.Controls.Add(this.txtItemCount);
+            this.tpInfo.Controls.Add(this.label15);
             this.tpInfo.Controls.Add(this.chkDefaultView);
             this.tpInfo.Controls.Add(this.chkHiddenView);
             this.tpInfo.Controls.Add(this.chkPersonalView);
@@ -382,7 +386,7 @@
             // 
             this.chkDefaultView.AutoSize = true;
             this.chkDefaultView.Enabled = false;
-            this.chkDefaultView.Location = new System.Drawing.Point(70, 166);
+            this.chkDefaultView.Location = new System.Drawing.Point(70, 192);
             this.chkDefaultView.Name = "chkDefaultView";
             this.chkDefaultView.Size = new System.Drawing.Size(85, 17);
             this.chkDefaultView.TabIndex = 40;
@@ -393,7 +397,7 @@
             // 
             this.chkHiddenView.AutoSize = true;
             this.chkHiddenView.Enabled = false;
-            this.chkHiddenView.Location = new System.Drawing.Point(161, 166);
+            this.chkHiddenView.Location = new System.Drawing.Point(161, 192);
             this.chkHiddenView.Name = "chkHiddenView";
             this.chkHiddenView.Size = new System.Drawing.Size(85, 17);
             this.chkHiddenView.TabIndex = 41;
@@ -404,7 +408,7 @@
             // 
             this.chkPersonalView.AutoSize = true;
             this.chkPersonalView.Enabled = false;
-            this.chkPersonalView.Location = new System.Drawing.Point(252, 166);
+            this.chkPersonalView.Location = new System.Drawing.Point(252, 192);
             this.chkPersonalView.Name = "chkPersonalView";
             this.chkPersonalView.Size = new System.Drawing.Size(92, 17);
             this.chkPersonalView.TabIndex = 42;
@@ -453,7 +457,7 @@
             // 
             this.txtViewName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtViewName.Location = new System.Drawing.Point(70, 139);
+            this.txtViewName.Location = new System.Drawing.Point(70, 165);
             this.txtViewName.Name = "txtViewName";
             this.txtViewName.ReadOnly = true;
             this.txtViewName.Size = new System.Drawing.Size(520, 20);
@@ -462,7 +466,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 142);
+            this.label9.Location = new System.Drawing.Point(3, 168);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(64, 13);
             this.label9.TabIndex = 38;
@@ -472,7 +476,7 @@
             // 
             this.txtViewID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtViewID.Location = new System.Drawing.Point(70, 113);
+            this.txtViewID.Location = new System.Drawing.Point(70, 139);
             this.txtViewID.Name = "txtViewID";
             this.txtViewID.ReadOnly = true;
             this.txtViewID.Size = new System.Drawing.Size(520, 20);
@@ -481,7 +485,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 116);
+            this.label8.Location = new System.Drawing.Point(3, 142);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(47, 13);
             this.label8.TabIndex = 36;
@@ -770,6 +774,25 @@
             this.progressBar1.Size = new System.Drawing.Size(119, 10);
             this.progressBar1.TabIndex = 205;
             // 
+            // txtItemCount
+            // 
+            this.txtItemCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtItemCount.Location = new System.Drawing.Point(70, 113);
+            this.txtItemCount.Name = "txtItemCount";
+            this.txtItemCount.ReadOnly = true;
+            this.txtItemCount.Size = new System.Drawing.Size(520, 20);
+            this.txtItemCount.TabIndex = 44;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(3, 116);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(60, 13);
+            this.label15.TabIndex = 43;
+            this.label15.Text = "Item count:";
+            // 
             // Form1
             // 
             this.AcceptButton = this.btnConnect;
@@ -888,6 +911,8 @@
     private System.Windows.Forms.ProgressBar progressBar1;
     private System.Windows.Forms.TabPage tpListData;
     private System.Windows.Forms.TextBox txtListData;
+    private System.Windows.Forms.TextBox txtItemCount;
+    private System.Windows.Forms.Label label15;
   }
 }
 

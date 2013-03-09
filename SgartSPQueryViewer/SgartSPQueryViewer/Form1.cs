@@ -150,6 +150,7 @@ namespace SgartSPQueryViewer
             txtListName.Clear();
             txtListTitle.Clear();
             txtCreated.Clear();
+            txtItemCount.Clear();
             txtViewID.Clear();
             txtViewName.Clear();
 
@@ -325,9 +326,16 @@ namespace SgartSPQueryViewer
 
                     LoadContentTypes(list);
 
-                    foreach (var view in views)
+                    foreach (SP.View view in views)
                     {
-                        cmbViews.Items.Add(view.Title);
+                        string id = view.Id.ToString("B").ToUpper();
+                        string title = view.Title;
+                        if (title == "")
+                        {
+                            title = id;
+                        }
+                        MyListItem itm = new MyListItem(id, title);
+                        cmbViews.Items.Add(itm);
                     }
                     if (cmbViews.Items.Count > 0)
                     {
@@ -507,12 +515,7 @@ namespace SgartSPQueryViewer
         {
             dgResults.DataSource = null;
 
-            string viewTitle = (string)cmbViews.SelectedItem;
-            if (string.IsNullOrEmpty(viewTitle))
-            {
-                MessageBox.Show("No view found", "SgartSPQueryViewer", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            Guid viewId = new Guid(((MyListItem)cmbViews.SelectedItem).Key);
 
             lblWait.Visible = true;
             txtCaml.Enabled = false;
@@ -527,6 +530,7 @@ namespace SgartSPQueryViewer
             txtListName.Clear();
             txtListTitle.Clear();
             txtCreated.Clear();
+            txtItemCount.Clear();
             txtViewID.Clear();
             txtViewName.Clear();
             btnResultsRefresh.Enabled = false;
@@ -543,7 +547,7 @@ namespace SgartSPQueryViewer
 
                     string listTitle = (string)cmbLists.SelectedItem;
                     SP.List list = web.Lists.GetByTitle(listTitle);
-                    SP.View view = list.Views.GetByTitle(viewTitle);
+                    SP.View view = list.Views.GetById(viewId);
                     //ctx.Load(view, w => w.ViewQuery, w => w.ViewFields, w => w.ViewData, w => w.Title, w => w.HtmlSchemaXml);
                     ctx.Load(list);
                     ctx.Load(list.RootFolder);
@@ -659,6 +663,7 @@ namespace SgartSPQueryViewer
             txtListName.Text = list.RootFolder.ServerRelativeUrl;
             txtListTitle.Text = list.Title;
             txtCreated.Text = list.Created.ToString() + " ( UTC: " + list.Created.ToString("s") + " )";
+            txtItemCount.Text = list.ItemCount.ToString();
 
             txtViewID.Text = view.Id.ToString("B");
             txtViewName.Text = view.ServerRelativeUrl;
