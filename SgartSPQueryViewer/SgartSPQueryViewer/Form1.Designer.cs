@@ -52,6 +52,8 @@
             this.label14 = new System.Windows.Forms.Label();
             this.txtContentTypes = new System.Windows.Forms.TextBox();
             this.tpInfo = new System.Windows.Forms.TabPage();
+            this.txtItemCount = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.chkDefaultView = new System.Windows.Forms.CheckBox();
             this.chkHiddenView = new System.Windows.Forms.CheckBox();
             this.chkPersonalView = new System.Windows.Forms.CheckBox();
@@ -91,8 +93,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.txtItemCount = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
+            this.chkLoginOnline = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tpCaml.SuspendLayout();
             this.tpCSharp.SuspendLayout();
@@ -134,7 +135,7 @@
             this.btnConnect.Location = new System.Drawing.Point(507, 2);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(96, 26);
-            this.btnConnect.TabIndex = 4;
+            this.btnConnect.TabIndex = 5;
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = true;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
@@ -381,6 +382,25 @@
             this.tpInfo.TabIndex = 4;
             this.tpInfo.Text = "Info";
             this.tpInfo.UseVisualStyleBackColor = true;
+            // 
+            // txtItemCount
+            // 
+            this.txtItemCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtItemCount.Location = new System.Drawing.Point(70, 113);
+            this.txtItemCount.Name = "txtItemCount";
+            this.txtItemCount.ReadOnly = true;
+            this.txtItemCount.Size = new System.Drawing.Size(520, 20);
+            this.txtItemCount.TabIndex = 44;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(3, 116);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(60, 13);
+            this.label15.TabIndex = 43;
+            this.label15.Text = "Item count:";
             // 
             // chkDefaultView
             // 
@@ -643,7 +663,7 @@
             this.cmbLists.Location = new System.Drawing.Point(57, 53);
             this.cmbLists.Name = "cmbLists";
             this.cmbLists.Size = new System.Drawing.Size(200, 21);
-            this.cmbLists.TabIndex = 5;
+            this.cmbLists.TabIndex = 6;
             this.toolTip1.SetToolTip(this.cmbLists, "choose list");
             this.cmbLists.SelectedIndexChanged += new System.EventHandler(this.cmbLists_SelectedIndexChanged);
             // 
@@ -661,10 +681,10 @@
             this.cmbViews.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbViews.FormattingEnabled = true;
-            this.cmbViews.Location = new System.Drawing.Point(326, 53);
+            this.cmbViews.Location = new System.Drawing.Point(303, 53);
             this.cmbViews.Name = "cmbViews";
-            this.cmbViews.Size = new System.Drawing.Size(149, 21);
-            this.cmbViews.TabIndex = 6;
+            this.cmbViews.Size = new System.Drawing.Size(172, 21);
+            this.cmbViews.TabIndex = 7;
             this.toolTip1.SetToolTip(this.cmbViews, "choose view");
             this.cmbViews.SelectedIndexChanged += new System.EventHandler(this.cmbViews_SelectedIndexChanged);
             // 
@@ -693,14 +713,14 @@
             // 
             this.txtUser.Location = new System.Drawing.Point(58, 29);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(200, 20);
-            this.txtUser.TabIndex = 1;
+            this.txtUser.Size = new System.Drawing.Size(154, 20);
+            this.txtUser.TabIndex = 2;
             this.toolTip1.SetToolTip(this.txtUser, "insert username");
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(264, 32);
+            this.label5.Location = new System.Drawing.Point(218, 32);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 13);
             this.label5.TabIndex = 201;
@@ -722,11 +742,11 @@
             // 
             this.txtPwd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPwd.Location = new System.Drawing.Point(326, 29);
+            this.txtPwd.Location = new System.Drawing.Point(280, 29);
             this.txtPwd.Name = "txtPwd";
             this.txtPwd.PasswordChar = '*';
-            this.txtPwd.Size = new System.Drawing.Size(149, 20);
-            this.txtPwd.TabIndex = 2;
+            this.txtPwd.Size = new System.Drawing.Size(126, 20);
+            this.txtPwd.TabIndex = 3;
             this.toolTip1.SetToolTip(this.txtPwd, "insert password");
             // 
             // btnCopy
@@ -752,7 +772,7 @@
             this.chkTryFindWebUrl.Location = new System.Drawing.Point(481, 9);
             this.chkTryFindWebUrl.Name = "chkTryFindWebUrl";
             this.chkTryFindWebUrl.Size = new System.Drawing.Size(15, 14);
-            this.chkTryFindWebUrl.TabIndex = 3;
+            this.chkTryFindWebUrl.TabIndex = 1;
             this.toolTip1.SetToolTip(this.chkTryFindWebUrl, "Try to find correct web url");
             this.chkTryFindWebUrl.UseVisualStyleBackColor = true;
             // 
@@ -774,24 +794,16 @@
             this.progressBar1.Size = new System.Drawing.Size(119, 10);
             this.progressBar1.TabIndex = 205;
             // 
-            // txtItemCount
+            // chkLoginOnline
             // 
-            this.txtItemCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtItemCount.Location = new System.Drawing.Point(70, 113);
-            this.txtItemCount.Name = "txtItemCount";
-            this.txtItemCount.ReadOnly = true;
-            this.txtItemCount.Size = new System.Drawing.Size(520, 20);
-            this.txtItemCount.TabIndex = 44;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(3, 116);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(60, 13);
-            this.label15.TabIndex = 43;
-            this.label15.Text = "Item count:";
+            this.chkLoginOnline.AutoSize = true;
+            this.chkLoginOnline.Location = new System.Drawing.Point(416, 31);
+            this.chkLoginOnline.Name = "chkLoginOnline";
+            this.chkLoginOnline.Size = new System.Drawing.Size(56, 17);
+            this.chkLoginOnline.TabIndex = 4;
+            this.chkLoginOnline.Text = "Online";
+            this.toolTip1.SetToolTip(this.chkLoginOnline, "Use login to SharePoint Online");
+            this.chkLoginOnline.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -799,6 +811,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(606, 356);
+            this.Controls.Add(this.chkLoginOnline);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.lblWait);
             this.Controls.Add(this.linkLabel2);
@@ -913,6 +926,7 @@
     private System.Windows.Forms.TextBox txtListData;
     private System.Windows.Forms.TextBox txtItemCount;
     private System.Windows.Forms.Label label15;
+    private System.Windows.Forms.CheckBox chkLoginOnline;
   }
 }
 

@@ -63,7 +63,7 @@ namespace SgartSPQueryViewer
                 return true;
             };
 
-            this.Text = Application.ProductName + " - v. " + Application.ProductVersion;
+            this.Text = Application.ProductName + " 2013 - v. " + Application.ProductVersion;
 
             btnRandomGuid_Click(null, null);
 
@@ -87,13 +87,34 @@ namespace SgartSPQueryViewer
                     domain = tmp[0];
                     user = tmp[1];
                 }
-                ctx.Credentials = new System.Net.NetworkCredential(user, txtPwd.Text, domain);
+                else
+                {
+                    user = txtUser.Text;
+                }
+                string password = txtPwd.Text;
+
+                if (chkLoginOnline.Checked)
+                {
+                    System.Security.SecureString secpwd = new System.Security.SecureString();
+                    for (int i = 0; i < password.Length; i++)
+                    {
+                        secpwd.AppendChar(password[i]);
+                    }
+                    //ClientAuthenticationMode = ClientAuthenticationMode.FormsAuthentication;
+                    //FormsAuthenticationLoginInfo creds = new FormsAuthenticationLoginInfo(User, Password);
+                    SharePointOnlineCredentials creds = new SharePointOnlineCredentials(user, secpwd);
+                    ctx.Credentials = creds;
+                }
+                else
+                {
+                    ctx.Credentials = new System.Net.NetworkCredential(user, txtPwd.Text, domain);
+                }
             }
             if (string.IsNullOrEmpty(ProxyUrl) == false)
             {
                 ctx.ExecutingWebRequest += (sen, args) =>
                 {
-                    WebProxy myProxy = new WebProxy(ProxyUrl);
+                    System.Net.WebProxy myProxy = new System.Net.WebProxy(ProxyUrl);
                     string domain = "";
                     string user = "";
                     if (ProxyUser.Replace('/', '\\').Contains('\\'))
